@@ -1,97 +1,90 @@
-let productsHTML = ``;
+let productsHTML = '';
 
 products.forEach((product) => {
-    productsHTML += `
+  productsHTML += `
     <div class="product-container">
-        <div class="product-image-container">
+      <div class="product-image-container">
         <img class="product-image"
-            src="${product.image}">
-        </div>
+          src="${product.image}">
+      </div>
 
-        <div class="product-name limit-text-to-2-lines">
+      <div class="product-name limit-text-to-2-lines">
         ${product.name}
-        </div>
+      </div>
 
-        <div class="product-rating-container">
+      <div class="product-rating-container">
         <img class="product-rating-stars"
-            src="images/ratings/rating-${product.rating.stars * 10}.png">
+          src="images/ratings/rating-${product.rating.stars * 10}.png">
         <div class="product-rating-count link-primary">
-            ${product.rating.count}
+          ${product.rating.count}
         </div>
-        </div>
+      </div>
 
-        <div class="product-price">
+      <div class="product-price">
         $${(product.priceCents / 100).toFixed(2)}
-        </div>
+      </div>
 
-        <div class="product-quantity-container">
+      <div class="product-quantity-container">
         <select>
-            <option selected value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
         </select>
-        </div>
+      </div>
 
-        <div class="product-spacer"></div>
+      <div class="product-spacer"></div>
 
-        <div class="added-to-cart">
+      <div class="added-to-cart">
         <img src="images/icons/checkmark.png">
         Added
-        </div>
+      </div>
 
-        <button class="add-to-cart-button 
-        button-primary js-add-to-cart"
-        data-product-id="${product.id}">
+      <button class="add-to-cart-button button-primary js-add-to-cart"
+      data-product-id="${product.id}">
         Add to Cart
-        </button>
+      </button>
     </div>
-    `;
+  `;
 });
-
-
-function checkout_quantity(){
-    let cartQuantity = 0
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-}
-
-checkout_quantity()
-
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-
 document.querySelectorAll('.js-add-to-cart')
-    .forEach((button)=>{
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
+  .forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = button.dataset.productId;
 
-            let matchingItem;
+      let matchingItem;
 
-            cart.forEach((item)=>{
-                if (productId === item.productId){
-                    matchingItem = item;
-                }
-            });
-            if(matchingItem){
-                matchingItem.quantity += 1;
-            }else{
-            cart.push({
-                productId: productId,
-                quantity: 1
-            });
-            }
+      cart.forEach((item) => {
+        if (productId === item.productId) {
+          matchingItem = item;
+        }
+      });
 
-            checkout_quantity()
+      if (matchingItem) {
+        matchingItem.quantity += 1;
+      } else {
+        cart.push({
+          productId: productId,
+          quantity: 1
         });
-});
+      }
 
+      let cartQuantity = 0;
+
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
+    });
+  });
