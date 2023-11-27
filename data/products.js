@@ -656,5 +656,20 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "bc2847e9-5323-4444-b7cf-57fde044a955",
+    image: "images/products/steelseries-rival-3.jpg",
+    name: "SteelSeries Rival 3",
+    rating: {
+      stars: 4.5,
+      count: 200
+    },
+    priceCents: 2500,
+    keywords: [
+      "SteelSeries",
+      "mouse",
+      "Rival 3",
+    ]
   }
 ];
