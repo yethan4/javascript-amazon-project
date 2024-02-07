@@ -2,7 +2,7 @@
 // basic test cases - tests if the code is working
 // edge cases - test with values that are tricky
 
-import {formatCurrency} from '../scripts/utils/money.js';
+import {formatCurrency} from '../../scripts/utils/money.js';
 
 // basic test
 console.log('test suite: fromatCurrency')
